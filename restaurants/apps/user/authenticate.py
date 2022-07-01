@@ -6,7 +6,7 @@ from rest_framework import authentication
 def create_token(email, password):
     return jwt.encode({'email': email,
         'password': password, 
-        'exp': datetime.now() + timedelta(minutes=5)},
+        'exp': datetime.now() + timedelta(minutes=15)},
         'secret',
         algorithm='HS256')
 

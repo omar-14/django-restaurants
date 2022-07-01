@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'restaurants.apps.restaurant',
     'restaurants.apps.user',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'restaurants.urls'
 
@@ -78,10 +81,21 @@ WSGI_APPLICATION = 'restaurants.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'restaurants',
+        'USER': 'sa',
+        'PASSWORD': 'root123456',
+        'HOST': 'localhost',
+        'PORT': '',
+        # 'SCHEMA': 'restaurants',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        }
     }
 }
+
+DATABASE_CONNECTION_POOLING = False
 
 
 # Password validation
