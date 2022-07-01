@@ -83,14 +83,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'restaurants',
-        'USER': 'sa',
-        'PASSWORD': 'root123456',
-        'HOST': 'localhost',
+        'USER': 'administrador',
+        'PASSWORD': 'root123456.',
+        'HOST': 'restaurants-db.database.windows.net',
         'PORT': '',
-        # 'SCHEMA': 'restaurants',
-
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
+            'isolation_level': 'READ UNCOMMITTED'
         }
     }
 }

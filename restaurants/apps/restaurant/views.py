@@ -80,11 +80,13 @@ class RestaurantUpdate(APIView):
             restaurants = list(Restaurant.objects.filter(id=index['id']).values())
             if len(restaurants) > 0:
                 new_data = dict(data_restauratnt.validated_data)
-                restaurant = Restaurant.objects.filter(id=id).values().first()
-                restaurant['name'] = new_data['name']
-                restaurant['type'] = new_data['name']
-                restaurant['address'] = new_data['address']
-                restaurant['telephone'] = new_data['telephone']
+
+                restaurant = Restaurant.objects.get(id=id)
+
+                restaurant.name = new_data['name']
+                restaurant.type = new_data['type']
+                restaurant.address = new_data['address']
+                restaurant.telephone = new_data['telephone']
                 restaurant.save()
                 return Response(data={
                     'message': 'Restaurant was updated',
